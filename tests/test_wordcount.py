@@ -6,9 +6,10 @@ Unit Test cases for wordcount
 import sys
 import unittest
 import importlib
+import io
 try:
     # python2
-    from StringIO import StringIO
+    from io.StringIO import StringIO
 except ImportError:
     # python3
     from io import StringIO
@@ -22,11 +23,12 @@ alice_top_20 = [
     '1605', '766', '706', '614', '518', '493', '421', '362',
     '352', '333', '265', '261', '249', '222', '221', '208',
     '206', '176', '169', '155'
-    ]
+]
 
 
 class Capturing(list):
     """Context Mgr helper for capturing stdout from a function call"""
+
     def __enter__(self):
         self._stdout = sys.stdout
         sys.stdout = self._stringio = StringIO()
